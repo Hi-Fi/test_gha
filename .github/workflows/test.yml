@@ -1,6 +1,6 @@
 name: Stop Review
 on:
-  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       head_ref:
