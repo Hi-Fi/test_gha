@@ -1,7 +1,6 @@
 name: Stop Review
 on:
-  pull_request:
-    types: [closed]
+  push:
   workflow_dispatch:
     inputs:
       head_ref:
@@ -19,4 +18,7 @@ jobs:
     name: Stop Review
     steps:
       - uses:  Hi-Fi/kolga-setup-action@feat/input_possibility
-      - run: echo ${{ github.event }}
+        with:
+          head_ref: ${{ github.event.inputs.head_ref }}
+          pr_id: ${{ github.event.inputs.pr_id }}
+      - run: echo "hello"
