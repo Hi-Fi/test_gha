@@ -1,0 +1,22 @@
+name: Stop Review
+on:
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      head_ref:
+        description: 'Branch where review environment was created from (as in GitHub)'     
+        required: true
+      pr_id:
+        description: "Pull request ID of the environment creator"
+
+env:
+  KUBECONFIG_RAW: ${{ secrets.KUBECONFIG_RAW }}
+
+jobs:
+  stop_review:
+    runs-on: ubuntu-latest
+    name: Stop Review
+    steps:
+      - uses:  Hi-Fi/kolga-setup-action@feat/input_possibility
+      - run: echo ${{ github.event }}
